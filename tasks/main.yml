@@ -1,7 +1,16 @@
 ---
-# template tasks file
+############ VirtualBox Installation (Move to separate role later) ###############
 
-- name: Load variables based on OS type
-  tags: [ 'tag', 'another_tag' ]
-  debug:
-    msg: "{{ somevar | default('ansible') }}"
+- name: Download Vagrant
+  shell:
+    "wget https://releases.hashicorp.com/vagrant/2.2.16/vagrant_2.2.16_x86_64.rpm"
+  become: yes
+  become_method: su
+
+- name: Install Vagrant
+  shell: 
+    "yum -y localinstall vagrant_2.2.16_x86_64.rpm"
+  become: yes
+  become_method: su
+
+
